@@ -1,0 +1,10 @@
+services:
+  web:
+    build: .
+    image: encrypt-labs-docker:gzctf
+    ports:
+      - "9000:9000"
+    volumes:
+      - /src:/var/www/html
+    environment:
+      - GZCTF_FLAG=flag{this_is_a_sample_flag}
