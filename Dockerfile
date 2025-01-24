@@ -1,6 +1,7 @@
 FROM php:fpm-alpine
 
-RUN apk add --no-cache \
+RUN sed -i 's#https\?://dl-cdn.alpinelinux.org/alpine#https://mirrors.tuna.tsinghua.edu.cn/alpine#g' /etc/apk/repositories \
+    && apk add --no-cache \
     freetype-dev \
     libjpeg-turbo-dev \
     libpng-dev \
@@ -13,8 +14,9 @@ WORKDIR /var/www/html
 
 RUN chown -R www-data:www-data /var/www/html
 
-COPY config/nginx.conf /etc/nginx/conf.d/default.conf
-COPY config/php.ini /usr/local/etc/php/conf.d/php.ini
+COPY ./config/nginx.conf /etc/nginx/nginx.conf
+COPY ./config/docker-php-ext-mysqli.ini /usr/local/etc/php/conf.d
+COPY ./config/docker-php-ext-pdo_mysql.ini /usr/local/etc/php/conf.d
 COPY --chown=www-data:www-data src /var/www/html
 COPY --chmod=500 init.sh /init.sh
 

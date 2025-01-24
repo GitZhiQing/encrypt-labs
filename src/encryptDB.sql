@@ -4,6 +4,12 @@
  Date: 18/11/2024 16:56:43
 */
 
+-- ----------------------------
+-- Database structure for encryptDB
+-- ----------------------------
+CREATE DATABASE IF NOT EXISTS encryptDB;
+USE encryptDB;
+
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
